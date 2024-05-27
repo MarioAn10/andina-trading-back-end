@@ -15,6 +15,9 @@ export class ErrorHandlerService {
         if (error.code === this.dbErrors.NOT_NULL_CONSTRAINT)
             throw new BadRequestException(`Column ${error.column} in table ${error.table} must not be null`);
 
+        if(error.code === this.dbErrors.FK_CONSTRAINT)
+            throw new BadRequestException(error.detail);
+
         this.logger.error(error);
         throw new InternalServerErrorException('Unexpected error. Check server logs');
     }

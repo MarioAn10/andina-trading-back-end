@@ -12,7 +12,7 @@ export class CreateProductDto {
 
     @IsString()
     @IsOptional()
-    descrition?: string;
+    description?: string;
 
     @IsString()
     @IsOptional()
@@ -34,5 +34,10 @@ export class CreateProductDto {
 
     @IsArray()
     @IsString({ each: true })
-    tags?: string[]
+    tags: string[];
+
+    @IsString({ each: true })
+    @IsArray()
+    @IsOptional()
+    images?: string[];
 }
