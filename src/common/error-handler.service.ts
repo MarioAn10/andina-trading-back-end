@@ -8,7 +8,7 @@ export class ErrorHandlerService {
     private readonly logger = new Logger('ErrorHandlerService');
     private readonly dbErrors = DB_ERROR_CODES;
 
-    handleDBException(error: IErrorsTypeORM | IDriverError) {
+    handleDBException(error: IErrorsTypeORM | IDriverError): never {
         if (error.code === this.dbErrors.UNIQUE_CONSTRAINT)
             throw new BadRequestException(error.detail);
 
