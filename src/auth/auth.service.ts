@@ -52,11 +52,16 @@ export class AuthService {
       select: { id: true, password: true }
     });
 
-    console.log(user);
-
     if (!user || !encrypt.compareSync(password, user.password))
       throw new UnauthorizedException('Invalid credentials');
 
+    return {
+      ...user,
+      token: this.getJwtToken({ id: user.id }),
+    };
+  }
+
+  async checkAuthStatus(user: User) {
     return {
       ...user,
       token: this.getJwtToken({ id: user.id }),

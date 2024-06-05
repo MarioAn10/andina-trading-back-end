@@ -15,10 +15,10 @@ export class UserRoleGuard implements CanActivate {
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
     const validRoles: string[] = this.reflector.get(ROLES, context.getHandler());
+
+    if (!validRoles || validRoles.length === 0) return true;
+
     const request = context.switchToHttp().getRequest();
-
-    console.log({ request });
-
     const user = request.user as User;
 
     if (!user) throw new BadRequestException('User not found in headers');
