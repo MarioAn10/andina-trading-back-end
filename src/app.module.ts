@@ -10,6 +10,7 @@ import { SeedModule } from './seed/seed.module';
 import { FilesModule } from './files/files.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { AuthModule } from './auth/auth.module';
+import { InvestorsModule } from './investors/investors.module';
 
 
 @Module({
@@ -33,6 +34,7 @@ import { AuthModule } from './auth/auth.module';
         SeedModule,
         FilesModule,
         AuthModule,
+        InvestorsModule,
     ],
 })
 export class AppModule { }
